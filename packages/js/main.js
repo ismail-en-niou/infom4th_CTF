@@ -188,17 +188,17 @@ const selectedIcon = localStorage.getItem("selected-icon");
 const getCurrentTheme = () =>
   document.body.classList.contains(darkTheme) ? "dark" : "light";
 const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? "uil-moon" : "uil-sun";
+  themeButton.classList.contains(iconTheme) ? "uil-sun" : "uil-moon";
 
-// We validate if the user previously chose a topic
+// Apply the default dark theme if no theme has been selected before
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
-  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
-    darkTheme
-  );
-  themeButton.classList[selectedIcon === "uil-moon" ? "add" : "remove"](
-    iconTheme
-  );
+  // If the validation is fulfilled, we apply the user's chosen theme
+  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](darkTheme);
+  themeButton.classList[selectedIcon === "uil-sun" ? "add" : "remove"](iconTheme);
+} else {
+  // Apply the dark theme by default
+  document.body.classList.add(darkTheme);
+  themeButton.classList.add(iconTheme);
 }
 
 // Activate / deactivate the theme manually with the button
